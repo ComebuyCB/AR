@@ -108,15 +108,15 @@
 		//		add an object in the scene
 		//////////////////////////////////////////////////////////////////////////////////
 		var arWorldRoot = smoothedRoot
-		var geometry = new THREE.BoxGeometry( 3, 0.1, 3 )
-		var material = new THREE.MeshNormalMaterial({
-			transparent: true,
-			opacity: 0.5,
-			side: THREE.DoubleSide
-		});
-		var mesh = new THREE.Mesh( geometry, material )
-		mesh.position.y	= geometry.parameters.height/2
-		arWorldRoot.add( mesh )
+		var mesh
+		var loader = new THREE.TextureLoader()
+		loader.load( 'Mona_Lisa.jpg', function( texture ) {
+			var geometry = new THREE.BoxGeometry( 0.001 * texture.image.naturalHeight, 0.1, 0.001 * texture.image.naturalWidth )
+			var material = new THREE.MeshNormalMaterial({ map: texture })
+			mesh = new THREE.Mesh( geometry, material )
+			mesh.position.y	= geometry.parameters.height/2
+			arWorldRoot.add( mesh )
+		})
 
 		//////////////////////////////////////////////////////////////////////////////////
 		//		render the whole thing on the page
