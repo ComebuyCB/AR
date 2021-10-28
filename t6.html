@@ -12,10 +12,10 @@
 	<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/three.js/build/ar.js"></script>
 </head>
 
-<body style='margin : 0px; overflow: hidden'>
+<body style='margin : 0px; overflow: hidden';>
 	<div id="loading"></div>
 	<div style="position: fixed; right:0;">
-		<button id="rm" style="margin: 10px;">Remove</button>
+		<button id="rm" style="margin: 10px;">RM</button>
 		<button id="add" style="margin: 10px;">Add</button>
 	</div>
 	<script>
@@ -71,13 +71,13 @@
 			deltaTime = 0
 			totalTime = 0
 			
+
 			////////////////////////////////////////////////////////////
 			// setup arToolkitSource
 			////////////////////////////////////////////////////////////
 			arToolkitSource = new THREEx.ArToolkitSource({
 				sourceType : 'webcam',
 			})
-
 			function onResize() {
 				arToolkitSource.onResize()	
 				arToolkitSource.copySizeTo(renderer.domElement)	
@@ -85,17 +85,12 @@
 					arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)	
 				}	
 			}
-
 			arToolkitSource.init(function onReady(){
 				onResize()
 			})
 			window.addEventListener('resize', function(){
 				onResize()
 			})
-			
-			////////////////////////////////////////////////////////////
-			// setup arToolkitContext
-			////////////////////////////////////////////////////////////
 			arToolkitContext = new THREEx.ArToolkitContext({
 				cameraParametersUrl: 'camera_para.dat',
 				detectionMode: 'mono'
@@ -104,13 +99,14 @@
 				camera.projectionMatrix.copy( arToolkitContext.getProjectionMatrix() );
 			});
 
+
 			////////////////////////////////////////////////////////////
 			// setup markerRoots
 			////////////////////////////////////////////////////////////
 			markerRoot1 = new THREE.Group();
 			scene.add(markerRoot1)
 			let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-				type: 'pattern', patternUrl: "pattern-marker.patt",
+				type: 'pattern', patternUrl: "pattern-100.patt",
 			})
 
 			let loader = new THREE.TextureLoader(manager)
@@ -134,9 +130,8 @@
 		}
 
 		function update(){
-			// update artoolkit on every frame
 			if ( arToolkitSource.ready !== false )
-				arToolkitContext.update( arToolkitSource.domElement );
+				arToolkitContext.update( arToolkitSource.domElement )
 		}
 
 		function render(){
@@ -154,7 +149,6 @@
 		$('#rm').on('click',function(){
 			markerRoot1.remove( mesh1 )
 		})
-
 		$('#add').on('click',function(){
 			markerRoot1.add( mesh1 )
 		})
