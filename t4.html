@@ -7,9 +7,9 @@
 	<script src='https://cdn.rawgit.com/jeromeetienne/AR.js/master/three.js/examples/vendor/three.js/build/three.min.js'></script>
 	<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/three.js/examples/vendor/three.js/examples/js/libs/stats.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    
 	<!-- ar.js -->
 	<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/three.js/build/ar.js"></script>
-	<script>THREEx.ArToolkitContext.baseURL = 'https://cdn.rawgit.com/jeromeetienne/AR.js/master/three.js/examples/'</script>
 </head>
 
 <body style='margin : 0px; overflow: hidden'>
@@ -80,21 +80,25 @@
 			// setup markerRoots
 			////////////////////////////////////////////////////////////
 			markerRoot1 = new THREE.Group();
-			scene.add(markerRoot1);
+			scene.add(markerRoot1)
 			let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-				type: 'pattern', patternUrl: "pattern-marker.patt",
+				type: 'pattern', patternUrl: "pattern-100.patt",
 			})
 
-			let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4)
 			let loader = new THREE.TextureLoader()
-			let texture = loader.load( 'Mona_Lisa.jpg', render )
-			let material1 = new THREE.MeshBasicMaterial( { map: texture } )
-			
-			mesh1 = new THREE.Mesh( geometry1, material1 );
-			mesh1.rotation.x = -Math.PI/2;
-			
-			markerRoot1.add( mesh1 );
+			loader.load( 'Mona_Lisa.jpg', (texture)=>{
+                let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4)
+                let material1 = new THREE.MeshBasicMaterial( { map: texture } )
+                mesh1 = new THREE.Mesh( geometry1, material1 )
+                mesh1.rotation.x = -Math.PI/2
+                markerRoot1.add( mesh1 )
+                render()
+            })
 		}
+
+        function addPic1(){
+
+        }
 
 		function update(){
 			// update artoolkit on every frame
@@ -115,7 +119,8 @@
 		}
 
 		$('#aaa').on('click',function(){
-			arWorldRoot.remove( mesh )
+			scene.remove( markerRoot1 )
+
 		})
 	</script>
 	</body>
