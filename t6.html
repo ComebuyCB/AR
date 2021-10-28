@@ -119,7 +119,7 @@
                 markerRoot1.add( mesh1 )
             })
 
-			loader.load( 'pattern-100-2.png', (texture)=>{
+			loader.load( 'pattern-marker.png', (texture)=>{
 				console.log( texture )
                 let geometry = new THREE.PlaneBufferGeometry( texture.image.naturalWidth * 0.005, texture.image.naturalHeight * 0.005, 4,4)
                 let material = new THREE.MeshBasicMaterial( { map: texture } )
