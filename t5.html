@@ -80,22 +80,20 @@
 			// setup markerRoots
 			////////////////////////////////////////////////////////////
 			markerRoot1 = new THREE.Group();
-			scene.add(markerRoot1);
+			scene.add(markerRoot1)
 			let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
 				type: 'pattern', patternUrl: "pattern-100.patt",
 			})
 
-			let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4)
 			let loader = new THREE.TextureLoader()
-
-
-			let texture = loader.load( 'Mona_Lisa.jpg', (texture)=>{
+			loader.load( 'Mona_Lisa.jpg', (texture)=>{
+                let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4)
                 let material1 = new THREE.MeshBasicMaterial( { map: texture } )
-                mesh1 = new THREE.Mesh( geometry1, material1 );
-                mesh1.rotation.x = -Math.PI/2;
-                markerRoot1.add( mesh1 );
+                mesh1 = new THREE.Mesh( geometry1, material1 )
+                mesh1.rotation.x = -Math.PI/2
+                markerRoot1.add( mesh1 )
             })
-			
+			render()
 		}
 
 		function update(){
@@ -112,12 +110,12 @@
 			requestAnimationFrame(animate)
 			deltaTime = clock.getDelta();
 			totalTime += deltaTime;
-			update();
-			render();
+			update()
+			render()
 		}
 
 		$('#aaa').on('click',function(){
-			scene.remove( mesh )
+			scene.remove( markerRoot1 )
 
 		})
 	</script>
