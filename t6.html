@@ -12,7 +12,7 @@
 	<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/three.js/build/ar.js"></script>
 </head>
 
-<body style='margin : 0px; overflow: hidden';>
+<body style='margin : 0px; overflow: hidden'>
 	<div id="loading"></div>
 	<div style="position: fixed; right:0;">
 		<button id="rm" style="margin: 10px;">RM</button>
@@ -106,13 +106,13 @@
 			markerRoot1 = new THREE.Group();
 			scene.add(markerRoot1)
 			let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-				type: 'pattern', patternUrl: "pattern-100.patt",
+				type: 'pattern', patternUrl: "pattern-100-2.patt",
 			})
 
 			let loader = new THREE.TextureLoader(manager)
 			loader.load( 'Mona_Lisa.jpg', (texture)=>{
 				console.log( texture )
-                let geometry = new THREE.PlaneBufferGeometry( texture.image.naturalWidth * 0.001, texture.image.naturalHeight * 0.001, 4,4)
+                let geometry = new THREE.PlaneBufferGeometry( texture.image.naturalWidth * 0.005, texture.image.naturalHeight * 0.005, 4,4)
                 let material = new THREE.MeshBasicMaterial( { map: texture } )
                 mesh1 = new THREE.Mesh( geometry, material )
                 mesh1.rotation.x = -Math.PI/2
@@ -121,11 +121,11 @@
 
 			loader.load( 'pattern-100.png', (texture)=>{
 				console.log( texture )
-                let geometry = new THREE.PlaneBufferGeometry( texture.image.naturalWidth * 0.001, texture.image.naturalHeight * 0.001, 4,4)
+                let geometry = new THREE.PlaneBufferGeometry( texture.image.naturalWidth * 0.005, texture.image.naturalHeight * 0.005, 4,4)
                 let material = new THREE.MeshBasicMaterial( { map: texture } )
                 mesh2 = new THREE.Mesh( geometry, material )
                 mesh2.rotation.x = -Math.PI/2
-                markerRoot1.add( mesh2 )
+                // markerRoot1.add( mesh2 )
             })
 		}
 
@@ -150,7 +150,7 @@
 			markerRoot1.remove( mesh1 )
 		})
 		$('#add').on('click',function(){
-			markerRoot1.add( mesh1 )
+			markerRoot1.add( mesh2 )
 		})
 	</script>
 	</body>

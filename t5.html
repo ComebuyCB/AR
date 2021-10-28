@@ -129,7 +129,6 @@
                 let material = new THREE.MeshBasicMaterial( { map: texture } )
                 mesh2 = new THREE.Mesh( geometry, material )
                 mesh2.rotation.x = -Math.PI/2
-                markerRoot1.add( mesh2 )
             })
 		}
 
@@ -152,11 +151,13 @@
 		}
 
 		$('#rm').on('click',function(){
+			console.log('rm')
 			markerRoot1.remove( mesh1 )
 		})
 
 		$('#add').on('click',function(){
-			markerRoot1.add( mesh1 )
+			console.log('add')
+			markerRoot1.add( mesh2 )
 		})
 	</script>
 	</body>
