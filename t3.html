@@ -60,9 +60,9 @@
 		function onResize(){
 			arToolkitSource.onResizeElement()
 			arToolkitSource.copyElementSizeTo(renderer.domElement)
-			// if( arToolkitContext.arController !== null ){
-			// 	arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)
-			// }
+			if( arToolkitContext.arController !== null ){
+				arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)
+			}
 		}
 		////////////////////////////////////////////////////////////////////////////////
 		//          initialize arToolkitContext
