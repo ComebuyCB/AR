@@ -87,16 +87,18 @@
 
 			let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4)
 			let loader = new THREE.TextureLoader()
-
-
-			let texture = loader.load( 'Mona_Lisa.jpg', (texture)=>{
-                let material1 = new THREE.MeshBasicMaterial( { map: texture } )
-                mesh1 = new THREE.Mesh( geometry1, material1 );
-                mesh1.rotation.x = -Math.PI/2;
-                markerRoot1.add( mesh1 );
-            })
+			let texture = loader.load( 'Mona_Lisa.jpg', render )
+			let material1 = new THREE.MeshBasicMaterial( { map: texture } )
 			
+			mesh1 = new THREE.Mesh( geometry1, material1 );
+			mesh1.rotation.x = -Math.PI/2;
+			
+			markerRoot1.add( mesh1 );
 		}
+
+        function addPic1(){
+
+        }
 
 		function update(){
 			// update artoolkit on every frame
