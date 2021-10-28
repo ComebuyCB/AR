@@ -13,16 +13,41 @@
 </head>
 
 <body style='margin : 0px; overflow: hidden'>
+	<div id="loading"></div>
 	<button id="aaa" style="position: fixed; right:0; margin: 10px;">click</button>
 	<script>
 		var scene, camera, renderer, clock, deltaTime, totalTime;
 		var arToolkitSource, arToolkitContext;
 		var markerRoot1;
 		var mesh1;
-		initialize();
-		animate();
+		var manager;
 
-		function initialize() {
+		create_loadManager()
+		init()
+		animate()
+
+		function create_loadManager(){
+			manager = new THREE.LoadingManager()
+			manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
+				$('#loading').text( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' )
+			};
+			manager.onLoad = function ( ) {
+				$('#loading').text( 'Loading complete!')
+				render()
+				$('#loading').fadeOut( 1000, function(){
+					$(this.remove())
+				})
+			}
+			manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+				$('#loading').text( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' )
+			}
+			manager.onError = function ( url ) {
+				console.log( 'There was an error loading ' + url );
+			}
+		}
+
+
+		function init() {
 			scene = new THREE.Scene();
 			// let ambientLight = new THREE.AmbientLight( 0xcccccc, 0.5 );
 			// scene.add( ambientLight )
@@ -82,18 +107,17 @@
 			markerRoot1 = new THREE.Group();
 			scene.add(markerRoot1)
 			let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-				type: 'pattern', patternUrl: "pattern-100.patt",
+				type: 'pattern', patternUrl: "pattern-marker.patt",
 			})
 
-			let loader = new THREE.TextureLoader()
+			let loader = new THREE.TextureLoader(manager)
 			loader.load( 'Mona_Lisa.jpg', (texture)=>{
-                let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4)
+                let geometry1 = new THREE.PlaneBufferGeometry(texture.image.natureWidth,texture.image.natureHeight, 4,4)
                 let material1 = new THREE.MeshBasicMaterial( { map: texture } )
                 mesh1 = new THREE.Mesh( geometry1, material1 )
                 mesh1.rotation.x = -Math.PI/2
                 markerRoot1.add( mesh1 )
             })
-			render()
 		}
 
 		function update(){
@@ -115,8 +139,7 @@
 		}
 
 		$('#aaa').on('click',function(){
-			scene.remove( markerRoot1 )
-
+			markerRoot1.remove( mesh1 )
 		})
 	</script>
 	</body>
