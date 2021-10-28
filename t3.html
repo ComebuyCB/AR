@@ -91,7 +91,7 @@
 		scene.add(markerRoot)
 		var artoolkitMarker = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
 			type : 'pattern',
-			patternUrl : 'pattern-marker.patt'
+			patternUrl : 'pattern-white.patt'
 		})
 		var smoothedRoot = new THREE.Group()
 		scene.add(smoothedRoot)
@@ -110,7 +110,7 @@
 		var arWorldRoot = smoothedRoot
 		var mesh
 		var loader = new THREE.TextureLoader()
-		loader.load( 'Mona_Lisa.jpg', function( texture ) {
+		loader.load( 'img/Mona_Lisa.jpg', function( texture ) {
 			var geometry = new THREE.BoxGeometry( 0.001 * texture.image.naturalHeight, 0.1, 0.001 * texture.image.naturalWidth )
 			var material = new THREE.MeshNormalMaterial({ map: texture })
 			mesh = new THREE.Mesh( geometry, material )

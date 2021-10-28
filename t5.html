@@ -110,11 +110,11 @@
 			markerRoot1 = new THREE.Group();
 			scene.add(markerRoot1)
 			let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-				type: 'pattern', patternUrl: "pattern-marker.patt",
+				type: 'pattern', patternUrl: "pattern-white.patt",
 			})
 
 			let loader = new THREE.TextureLoader(manager)
-			loader.load( 'Mona_Lisa.jpg', (texture)=>{
+			loader.load( 'img/Mona_Lisa.jpg', (texture)=>{
 				console.log( texture )
                 let geometry = new THREE.PlaneBufferGeometry( texture.image.naturalWidth * 0.001, texture.image.naturalHeight * 0.001, 4,4)
                 let material = new THREE.MeshBasicMaterial( { map: texture } )
@@ -123,7 +123,7 @@
                 markerRoot1.add( mesh1 )
             })
 
-			loader.load( 'nt100.jpg', (texture)=>{
+			loader.load( 'img/nt100.jpg', (texture)=>{
 				console.log( texture )
                 let geometry = new THREE.PlaneBufferGeometry( texture.image.naturalWidth * 0.001, texture.image.naturalHeight * 0.001, 4,4)
                 let material = new THREE.MeshBasicMaterial( { map: texture } )

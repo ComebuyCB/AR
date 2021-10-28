@@ -110,18 +110,18 @@
 			})
 
 			let loader = new THREE.TextureLoader(manager)
-			loader.load( 'Mona_Lisa.jpg', (texture)=>{
+			loader.load( 'img/Mona_Lisa.jpg', (texture)=>{
 				console.log( texture )
-                let geometry = new THREE.PlaneBufferGeometry( texture.image.naturalWidth * 0.005, texture.image.naturalHeight * 0.005, 4,4)
+                let geometry = new THREE.PlaneBufferGeometry( texture.image.naturalWidth * 0.002, texture.image.naturalHeight * 0.002, 4,4)
                 let material = new THREE.MeshBasicMaterial( { map: texture } )
                 mesh1 = new THREE.Mesh( geometry, material )
                 mesh1.rotation.x = -Math.PI/2
                 markerRoot1.add( mesh1 )
             })
 
-			loader.load( 'nt100.jpg', (texture)=>{
+			loader.load( 'img/nt100.jpg', (texture)=>{
 				console.log( texture )
-                let geometry = new THREE.PlaneBufferGeometry( texture.image.naturalWidth * 0.005, texture.image.naturalHeight * 0.005, 4,4)
+                let geometry = new THREE.PlaneBufferGeometry( texture.image.naturalWidth * 0.002, texture.image.naturalHeight * 0.002, 4,4)
                 let material = new THREE.MeshBasicMaterial( { map: texture } )
                 mesh2 = new THREE.Mesh( geometry, material )
                 mesh2.rotation.x = -Math.PI/2
