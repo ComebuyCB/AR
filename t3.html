@@ -114,7 +114,7 @@
 			var geometry = new THREE.BoxGeometry( 0.001 * texture.image.naturalHeight, 0.1, 0.001 * texture.image.naturalWidth )
 			var material = new THREE.MeshNormalMaterial({ map: texture })
 			mesh = new THREE.Mesh( geometry, material )
-			mesh.position.y	= geometry.parameters.height/2
+			// mesh.position.y	= geometry.parameters.height/2
 			arWorldRoot.add( mesh )
 		})
 
@@ -129,17 +129,19 @@
 		})
 
 		var lastTimeMsec= null
-		requestAnimationFrame(function animate(nowMsec){
-			requestAnimationFrame( animate )
-			lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
-			var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
-			lastTimeMsec	= nowMsec
-			onRenderFcts.forEach(function(onRenderFct){
-				onRenderFct(deltaMsec/1000, nowMsec/1000)
-			})
-		})
+		requestAnimationFrame(
+			function animate(nowMsec){
+				requestAnimationFrame( animate )
+				lastTimeMsec = lastTimeMsec || nowMsec-1000/60
+				var deltaMsec = Math.min(200, nowMsec - lastTimeMsec)
+				lastTimeMsec = nowMsec
+				onRenderFcts.forEach(function(onRenderFct){
+					onRenderFct(deltaMsec/1000, nowMsec/1000)
+				})
+			}
+		)
 
-		$('#click').on('click',function(){
+		$('#aaa').on('click',function(){
 			arWorldRoot.remove( mesh )
 		})
 
