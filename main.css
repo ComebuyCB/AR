@@ -4,7 +4,7 @@ body { margin : 0px; overflow: hidden; }
     width: 100%;
     height: 80px;
     position: absolute;
-    top: 0;
+    top: 40%;
     left: 0;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 9999;
@@ -17,6 +17,6 @@ body { margin : 0px; overflow: hidden; }
 }
 
 .arjs-loader::after { 
-    content: 'Loading ~~~ 28';
+    content: 'Loading ~~~ 29';
     display: block;
  }

@@ -4,6 +4,7 @@
     <script src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js'></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
 </head>
 <body>
     <!-- minimal loader shown until image descriptors are loaded -->
@@ -21,13 +22,63 @@
             smoothCount="5"
             smoothTolerance=".01"
             smoothThreshold="2">
-            <a-entity
-                gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/ComebuyCB/AR/master/obj/paper-size/PaperSize.gltf"
-                scale="2 2 2"
-                position="20 20 20">
+            <a-entity id="entity"
+                gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
+                scale="5 5 5"
+                position="50 50 0">
             </a-entity>
         </a-nft>
         <a-entity camera></a-entity>
     </a-scene>
+
+    <script>
+        var obj = {
+            position: {
+                x: 50,
+                y: 50,
+                z: 0,
+            },
+            scale: {
+                x: 1,
+                y: 1,
+                z: 1,
+            }
+        }
+
+        var gui = new dat.GUI()
+
+        var sceneEl = document.querySelector('a-scene')
+        var entity = document.querySelector('#entity')
+
+        var obj_position = gui.addFolder('position')
+            obj_position.open()
+            obj_position.add( obj.position, 'x', -50, 50, 0.1).onChange((value)=>{
+                entity.setAttribute('position', { x: value, y: obj.position.y, z: obj.position.z })
+            })
+            obj_position.add( obj.position, 'y', -50, 50, 0.1).onChange((value)=>{
+                entity.setAttribute('position', { x: obj.position.x, y: value, z: obj.position.z })
+            })
+            obj_position.add( obj.position, 'z', -50, 50, 0.1).onChange((value)=>{
+                entity.setAttribute('position', { x: obj.position.x, y: obj.position.y, z: value })
+            })
+
+        var obj_scale = gui.addFolder('scale')
+            obj_scale.open()
+            obj_scale.add( obj.scale, 'x', 0.1, 30, 0.1).onChange((value)=>{
+                entity.setAttribute('position', { x: value, y: obj.scale.y, z: obj.scale.z })
+            obj_scale.add( obj.scale, 'y', 0.1, 30, 0.1).onChange((value)=>{
+                entity.setAttribute('position', { x: obj.scale.x, y: value, z: obj.scale.z })
+            obj_scale.add( obj.scale, 'z', 0.1, 30, 0.1).onChange((value)=>{
+                entity.setAttribute('position', { x: obj.scale.x, y: obj.scale.y, z: value })
+            })
+
+            $(function(){
+                
+        
+                alert(entity.getDOMAttribute('geometry'))
+                alert(entity.getDOMAttribute('geometry').primitive)
+            })
+
+    </script>
 </body>
 </html>
