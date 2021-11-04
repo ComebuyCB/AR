@@ -25,7 +25,7 @@
             <a-entity id="entity"
                 gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/ComebuyCB/AR/master/obj/paper-size-512/PaperSize.gltf" 
                 scale="300 300 300" 
-                position="60 -100 -100"
+                position="80 0 -120"
                 rotation="0 0 0">
             </a-entity>
         </a-nft>
@@ -48,9 +48,11 @@
                 y: 0,
                 z: 0,
             },
-            change_model: function(){
-                // entity.setAttribute('gltf-model', 'https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/ComebuyCB/AR/master/obj/BottleOnly.gltf')
+            model_bottle: function(){
                 $(entity).attr('gltf-model','https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/ComebuyCB/AR/master/obj/BottleOnly.gltf')
+            },
+            model_origin: function(){
+                entity.setAttribute('gltf-model', 'https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/ComebuyCB/AR/master/obj/paper-size-o/PaperSize.gltf')
             }
         }
 
@@ -83,7 +85,9 @@
                 entity.setAttribute('rotation', { x: obj.rotation.x, y: obj.rotation.y, z: value })
             })
 
-            gui.add( obj,'change_model')
+        var obj_model = gui.addFolder('model')
+            obj_model.add( obj,'model_bottle')
+            obj_model.add( obj,'model_origin')
     </script>
 </body>
 </html>
