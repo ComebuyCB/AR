@@ -23,16 +23,19 @@
             smoothTolerance=".01"
             smoothThreshold="2">
             <a-entity id="entity"
-                gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/ComebuyCB/AR/master/obj/paper-size/scene.gltf" 
+                gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/ComebuyCB/AR/master/obj/paper-size-512/PaperSize.gltf" 
                 scale="300 300 300" 
                 position="60 -100 -100"
-                rotation="-90 0 0">
+                rotation="0 0 0">
             </a-entity>
         </a-nft>
         <a-entity camera></a-entity>
     </a-scene>
 
     <script>
+        var sceneEl = document.querySelector('a-scene')
+        var entity = document.querySelector('#entity')
+
         var obj = {
             scale: 1,
             position: {
@@ -44,16 +47,17 @@
                 x: 0,
                 y: 0,
                 z: 0,
+            },
+            change_model: function(){
+                // entity.setAttribute('gltf-model', 'https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/ComebuyCB/AR/master/obj/BottleOnly.gltf')
+                $(entity).attr('gltf-model','https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/ComebuyCB/AR/master/obj/BottleOnly.gltf')
             }
         }
 
         var gui = new dat.GUI()
 
-        var sceneEl = document.querySelector('a-scene')
-        var entity = document.querySelector('#entity')
-
         var obj_scale = gui.addFolder('scale')
-            obj_scale.add( obj.scale, 'x', 1, 1000).onChange((value)=>{
+            obj_scale.add( obj, 'scale', 1, 1000).onChange((value)=>{
                 entity.setAttribute('scale', { x: value, y: value, z: value })
             })
 
@@ -78,6 +82,8 @@
             obj_rotation.add( obj.rotation, 'z', -180, 180).onChange((value)=>{
                 entity.setAttribute('rotation', { x: obj.rotation.x, y: obj.rotation.y, z: value })
             })
+
+            gui.add( obj,'change_model')
     </script>
 </body>
 </html>
