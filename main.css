@@ -17,7 +17,7 @@ body { margin : 0px; overflow: hidden; }
 }
 
 .arjs-loader::after { 
-    content: 'Loading ~~~ 32';
+    content: 'Loading ~~~ 34';
     display: block;
 }
 
