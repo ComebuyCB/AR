@@ -23,7 +23,8 @@
             smoothTolerance=".01"
             smoothThreshold="2">
             <a-entity id="entity"
-                gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/ComebuyCB/AR/master/obj/BottleOnly.gltf" 
+                gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/ComebuyCB/AR/master/obj/paper-size/PaperSize.gltf" 
+                rotation="0 0 0"
                 scale="1 1 1" 
                 position="0 0 0">
             </a-entity>
@@ -42,6 +43,11 @@
                 x: 1,
                 y: 1,
                 z: 1,
+            },
+            rotation: {
+                x: 1,
+                y: 1,
+                z: 1,
             }
         }
 
@@ -52,26 +58,38 @@
 
         var obj_position = gui.addFolder('position')
             obj_position.open()
-            obj_position.add( obj.position, 'x', -100, 100, 1).onChange((value)=>{
+            obj_position.add( obj.position, 'x', -200, 200, 1).onChange((value)=>{
                 entity.setAttribute('position', { x: value, y: obj.position.y, z: obj.position.z })
             })
-            obj_position.add( obj.position, 'y', -100, 100, 1).onChange((value)=>{
+            obj_position.add( obj.position, 'y', -200, 200, 1).onChange((value)=>{
                 entity.setAttribute('position', { x: obj.position.x, y: value, z: obj.position.z })
             })
-            obj_position.add( obj.position, 'z', -100, 100, 1).onChange((value)=>{
+            obj_position.add( obj.position, 'z', -200, 200, 1).onChange((value)=>{
                 entity.setAttribute('position', { x: obj.position.x, y: obj.position.y, z: value })
             })
 
         var obj_scale = gui.addFolder('scale')
             obj_scale.open()
-            obj_scale.add( obj.scale, 'x', 0.1, 20, 0.1).onChange((value)=>{
+            obj_scale.add( obj.scale, 'x', 0.1, 100, 0.1).onChange((value)=>{
                 entity.setAttribute('scale', { x: value, y: obj.scale.y, z: obj.scale.z })
             })
-            obj_scale.add( obj.scale, 'y', 0.1, 20, 0.1).onChange((value)=>{
+            obj_scale.add( obj.scale, 'y', 0.1, 100, 0.1).onChange((value)=>{
                 entity.setAttribute('scale', { x: obj.scale.x, y: value, z: obj.scale.z })
             })
-            obj_scale.add( obj.scale, 'z', 0.1, 20, 0.1).onChange((value)=>{
+            obj_scale.add( obj.scale, 'z', 0.1, 100, 0.1).onChange((value)=>{
                 entity.setAttribute('scale', { x: obj.scale.x, y: obj.scale.y, z: value })
+            })
+
+        var obj_rotation = gui.addFolder('rotation')
+            obj_rotation.open()
+            obj_rotation.add( obj.rotation, 'x', -6.29, 6.29, 0.1).onChange((value)=>{
+                entity.setAttribute('rotation', { x: value, y: obj.rotation.y, z: obj.rotation.z })
+            })
+            obj_rotation.add( obj.rotation, 'y', -6.29, 6.29, 0.1).onChange((value)=>{
+                entity.setAttribute('rotation', { x: obj.rotation.x, y: value, z: obj.rotation.z })
+            })
+            obj_rotation.add( obj.rotation, 'z', -6.29, 6.29, 0.1).onChange((value)=>{
+                entity.setAttribute('rotation', { x: obj.rotation.x, y: obj.rotation.y, z: value })
             })
     </script>
 </body>
