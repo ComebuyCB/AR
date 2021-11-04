@@ -66,19 +66,18 @@
             obj_scale.open()
             obj_scale.add( obj.scale, 'x', 0.1, 30, 0.1).onChange((value)=>{
                 entity.setAttribute('position', { x: value, y: obj.scale.y, z: obj.scale.z })
+            })
             obj_scale.add( obj.scale, 'y', 0.1, 30, 0.1).onChange((value)=>{
                 entity.setAttribute('position', { x: obj.scale.x, y: value, z: obj.scale.z })
+            })
             obj_scale.add( obj.scale, 'z', 0.1, 30, 0.1).onChange((value)=>{
                 entity.setAttribute('position', { x: obj.scale.x, y: obj.scale.y, z: value })
             })
 
             $(function(){
-                
-        
                 alert(entity.getDOMAttribute('geometry'))
                 alert(entity.getDOMAttribute('geometry').primitive)
             })
-
     </script>
 </body>
 </html>

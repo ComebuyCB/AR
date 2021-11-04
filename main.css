@@ -17,6 +17,10 @@ body { margin : 0px; overflow: hidden; }
 }
 
 .arjs-loader::after { 
-    content: 'Loading ~~~ 29';
+    content: 'Loading ~~~ 30';
     display: block;
- }
+}
+
+.dg.ac {
+    z-index: 999999;
+}
