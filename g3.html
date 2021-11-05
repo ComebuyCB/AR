@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
         <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
+        <link href="main.css" rel="stylesheet">
+        <script src="main.js"></script>
     </head>
-    <body style="margin : 0px; overflow: hidden;">
-        <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
-            <a-marker preset='custom' type='pattern' url='pattern-marker.patt'>
-                <a-entity position="0 -1 0" scale="1 1 1" gltf-model="url(obj/BottleOnly.gltf)"></a-entity>
+    <body>
+        <div class="arjs-loader"></div>
+        <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+            <a-marker preset="hiro">
+                <a-entity id="entity" position="0 -1 0" scale="1 1 1" gltf-model="obj/paper-size-512/PaperSize.gltf"></a-entity>
             </a-marker>
         </a-scene>
     </body>

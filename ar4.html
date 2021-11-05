@@ -33,6 +33,9 @@
     </a-scene>
 
     <script>
+        var sceneEl = document.querySelector('a-scene')
+        var entity = document.querySelector('#entity')
+
         var obj = {
             scale: 1,
             position: {
@@ -46,12 +49,12 @@
                 z: 0,
             }
         }
+        
+            obj.scale = entity.getAttribute('scale').x
+            obj.position = entity.getAttribute('position')
+            obj.rotation = entity.getAttribute('rotation')
 
         var gui = new dat.GUI()
-
-        var sceneEl = document.querySelector('a-scene')
-        var entity = document.querySelector('#entity')
-
         var obj_scale = gui.addFolder('scale')
             obj_scale.add( obj, 'scale', 1, 1000).onChange((value)=>{
                 entity.setAttribute('scale', { x: value, y: value, z: value })
